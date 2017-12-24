@@ -1,6 +1,7 @@
 package com.example.xiankeli.test1224;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
             mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(i)));
         }
 
-        
+        List<Fragment> fragments = new ArrayList<>();
+        for (int i = 0; i < titles.size(); i++){
+            fragments.add(new ListFragment());
+        }
+
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments, titles);
+        mViewPager.setAdapter(fragmentAdapter);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+
     }
 }
